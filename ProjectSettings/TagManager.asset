@@ -20,6 +20,7 @@ TagManager:
   - Door113
   - Door112
   - Item1
+  - Door3
   layers:
   - Default
   - TransparentFX

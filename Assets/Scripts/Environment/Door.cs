@@ -7,6 +7,7 @@ public class Door : MonoBehaviour
     [SerializeField] private GameObject ActionTextKey_Door;
     [SerializeField] private GameObject ActionTextOpen_Door;
     [SerializeField] private string ID_Door;
+    [SerializeField] private string ID_DoorMission;
 
     private Animation animationDoor;
     private bool hasOpened = false;
@@ -29,6 +30,10 @@ public class Door : MonoBehaviour
                 if (hasOpened==false)
                 {
                     OnOpenDoor();
+                    if(PlayerLaser.Instance.hit.collider.CompareTag("Door" + ID_DoorMission) == PlayerLaser.Instance.hit.collider.CompareTag("Door" + ID_Door))
+                    {
+                        NotifyMission.Instance.TriggerNotification();
+                    }
                 }
             }
 
@@ -70,4 +75,6 @@ public class Door : MonoBehaviour
         ActionTextKey_Door.SetActive(true);
         ActionTextOpen_Door.SetActive(true);
     }
+
+ 
 }
