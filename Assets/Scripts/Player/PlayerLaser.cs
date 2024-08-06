@@ -12,15 +12,7 @@ public class PlayerLaser : Singleton<PlayerLaser>
     {
         CheckByLaser();
 
-        if (hit.collider != null && hit.collider.CompareTag("Door412"))
-        {
-            Debug.Log("412!");
-        }
-
-        if (hit.collider != null && hit.collider.CompareTag("Door413"))
-        {
-            Debug.Log("413!");
-        }
+      
     }
 
     private void CheckByLaser()

@@ -23,7 +23,6 @@ public class Door : MonoBehaviour
         {
 
             isLaserTargetingDoor = PlayerLaser.Instance.targetDistance < 5 && PlayerLaser.Instance.hit.collider != null && PlayerLaser.Instance.hit.collider.CompareTag("Door"+ID_Door);
-            Debug.Log(isActiveAndEnabled);
      
             if (Input.GetKey(KeyCode.E) && isLaserTargetingDoor == true)
             {

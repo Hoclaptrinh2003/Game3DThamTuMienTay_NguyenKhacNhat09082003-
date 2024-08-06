@@ -26,7 +26,7 @@ public class Item : MonoBehaviour
     {
         if (PlayerLaser.Instance != null)
         {
-            isLaserTargetingItem = PlayerLaser.Instance.targetDistance < 2 && PlayerLaser.Instance.hit.collider != null && PlayerLaser.Instance.hit.collider.CompareTag("Item" + ID_Item);
+            isLaserTargetingItem = PlayerLaser.Instance.targetDistance < 3 && PlayerLaser.Instance.hit.collider != null && PlayerLaser.Instance.hit.collider.CompareTag("Item" + ID_Item);
 
             if (isLaserTargetingItem==true)
             {
