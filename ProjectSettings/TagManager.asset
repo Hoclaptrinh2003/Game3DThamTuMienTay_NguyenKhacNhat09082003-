@@ -21,6 +21,12 @@ TagManager:
   - Door112
   - Item1
   - Door3
+  - u
+  - Door211
+  - Door212
+  - Door213
+  - Door214
+  - Door235
   layers:
   - Default
   - TransparentFX
@@ -31,7 +37,7 @@ TagManager:
   - Player
   - 412
   - 413
-  - 
+  - Door232
   - 
   - 
   - 

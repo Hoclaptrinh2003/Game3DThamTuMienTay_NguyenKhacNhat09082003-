@@ -58,7 +58,7 @@ public class Door : MonoBehaviour
 
     public void OnOpenDoor()
     {
-        SubJect.Notify("OnOpenDoor");
+        SubJect.Notify("OnOpenDoor"+ID_Door);
         animationDoor.Play();
         hasOpened = true;
     }

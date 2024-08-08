@@ -50,8 +50,8 @@ public class PlayerController : Singleton<PlayerController>
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
-        bool isRunning = Input.GetKey(KeyCode.LeftShift); // Kiểm tra xem phím Shift có được nhấn hay không
-        float speed = isRunning ? runSpeed : walkSpeed; // Xác định tốc độ di chuyển
+        bool isRunning = Input.GetKey(KeyCode.LeftShift); 
+        float speed = isRunning ? runSpeed : walkSpeed; 
 
         curSpeedX = canMove ? speed * Input.GetAxis("Vertical") : 0;
         curSpeedY = canMove ? speed * Input.GetAxis("Horizontal") : 0;
@@ -59,16 +59,16 @@ public class PlayerController : Singleton<PlayerController>
 
         if (characterController.isGrounded)
         {
-            velocity.y = -0.5f; // Giá trị nhỏ âm để giữ nhân vật trên mặt đất
+            velocity.y = -0.5f;
 
             if (Input.GetButtonDown("Jump"))
             {
-                velocity.y = jumpPower; // Thêm lực nhảy
+                velocity.y = jumpPower;
             }
         }
         else
         {
-            velocity.y -= gravity * Time.deltaTime; // Áp dụng trọng lực khi không ở trên mặt đất
+            velocity.y -= gravity * Time.deltaTime; 
         }
 
         characterController.Move((moveDirection + velocity) * Time.deltaTime);
