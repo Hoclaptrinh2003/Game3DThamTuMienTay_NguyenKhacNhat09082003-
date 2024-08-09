@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 
-public class ZombieMovement : MonoBehaviour
+public class ZombieAttack : MonoBehaviour
 {
-    public Transform player;      
-    public float speed = 3.5f;    
-    public float stoppingDistance = 1.5f; 
+    public Transform player;
+    public float speed = 3.5f;
+    public float stoppingDistance = 1.5f;
 
     private Rigidbody rb;
+    private bool isChasing = false; // Thay đổi trạng thái
 
     void Start()
     {
@@ -20,7 +21,7 @@ public class ZombieMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (player != null)
+        if (isChasing && player != null)
         {
             Vector3 direction = (player.position - transform.position).normalized;
             float distance = Vector3.Distance(transform.position, player.position);
@@ -29,6 +30,32 @@ public class ZombieMovement : MonoBehaviour
             {
                 rb.MovePosition(transform.position + direction * speed * Time.deltaTime);
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Hi");
+            isChasing = true; // Kích hoạt trạng thái đuổi theo Player
+        }
+    }
+
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Hi");
+            isChasing = true; // Kích hoạt trạng thái đuổi theo Player
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isChasing = false; // Dừng đuổi theo khi không còn va chạm
         }
     }
 }

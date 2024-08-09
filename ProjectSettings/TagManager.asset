@@ -28,6 +28,8 @@ TagManager:
   - Door214
   - Door235
   - Door2
+  - bullet
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -39,7 +41,7 @@ TagManager:
   - 412
   - 413
   - Door232
-  - 
+  - Bullet
   - 
   - 
   - 
