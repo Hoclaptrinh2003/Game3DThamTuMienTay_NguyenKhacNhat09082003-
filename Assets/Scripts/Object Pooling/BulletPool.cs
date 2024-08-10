@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletPool : MonoBehaviour
+public class BulletPool : Singleton<BulletPool>
 {
-    public GameObject bulletPrefab; // Prefab của đạn
-    public int poolSize = 10; // Kích thước của pool
-    private Queue<GameObject> bulletPool; // Queue để lưu trữ các đạn trong pool
+    public GameObject bulletPrefab; 
+    public int poolSize = 10; 
+    private Queue<GameObject> bulletPool; 
 
     void Start()
     {
@@ -14,8 +14,8 @@ public class BulletPool : MonoBehaviour
         for (int i = 0; i < poolSize; i++)
         {
             GameObject bullet = Instantiate(bulletPrefab);
-            bullet.SetActive(false); // Không kích hoạt các đạn khi khởi tạo
-            bulletPool.Enqueue(bullet); // Thêm đạn vào pool
+            bullet.SetActive(false); 
+            bulletPool.Enqueue(bullet); 
         }
     }
 
@@ -29,7 +29,7 @@ public class BulletPool : MonoBehaviour
         }
         else
         {
-            // Nếu không còn đạn trong pool, tạo mới (tuỳ chọn)
+           
             GameObject bullet = Instantiate(bulletPrefab);
             return bullet;
         }

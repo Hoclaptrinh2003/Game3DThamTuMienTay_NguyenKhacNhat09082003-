@@ -3,59 +3,41 @@
 public class ZombieAttack : MonoBehaviour
 {
     public Transform player;
-    public float speed = 3.5f;
-    public float stoppingDistance = 1.5f;
+    public float speed = 3.0f; 
 
-    private Rigidbody rb;
-    private bool isChasing = false; // Thay đổi trạng thái
+    private bool isChasing = false; 
 
-    void Start()
+    Animator animator;
+
+    private void Start()
     {
-        rb = GetComponent<Rigidbody>();
-
-        if (rb == null)
-        {
-            Debug.LogError("Rigidbody component not found on this GameObject");
-        }
+        animator = GetComponent<Animator>();
     }
-
-    void FixedUpdate()
+    private void Update()
     {
         if (isChasing && player != null)
         {
+          
             Vector3 direction = (player.position - transform.position).normalized;
-            float distance = Vector3.Distance(transform.position, player.position);
 
-            if (distance > stoppingDistance)
-            {
-                rb.MovePosition(transform.position + direction * speed * Time.deltaTime);
-            }
+   
+            transform.position += direction * speed * Time.deltaTime;
+
+       
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+
+        if (other.CompareTag("Player") || other.CompareTag("Bullet"))
         {
-            Debug.Log("Hi");
-            isChasing = true; // Kích hoạt trạng thái đuổi theo Player
+            animator.SetBool("isMove", true);
+            isChasing = true; 
         }
     }
 
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Hi");
-            isChasing = true; // Kích hoạt trạng thái đuổi theo Player
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isChasing = false; // Dừng đuổi theo khi không còn va chạm
-        }
-    }
+   
 }

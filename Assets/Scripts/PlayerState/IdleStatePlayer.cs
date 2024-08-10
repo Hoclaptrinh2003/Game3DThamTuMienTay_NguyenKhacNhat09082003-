@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -24,7 +24,6 @@ public class IdleStatePlayer : StatePlayer
         {
 
             _playerManager.SetState(new MoveStatePlayer(_playerManager));
-
         }
     }
 

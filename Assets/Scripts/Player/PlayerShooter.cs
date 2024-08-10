@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerShooter : MonoBehaviour
 {
-    public BulletPool bulletPool; // Reference đến BulletPool
+    public BulletPool bulletPool; 
     public Transform shootPoint;
     public float fireRate = 0.5f;
     private bool isFiring = false;
@@ -28,6 +28,7 @@ public class PlayerShooter : MonoBehaviour
             {
                 StopCoroutine(sparkCoroutine);
             }
+
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -35,6 +36,7 @@ public class PlayerShooter : MonoBehaviour
             isFiring = false;
             StopCoroutine(FireBulletCoroutine());
             sparkCoroutine = StartCoroutine(DelayedSparkHide());
+            AudioManager.Instance.PlayBulletSound();
         }
     }
 

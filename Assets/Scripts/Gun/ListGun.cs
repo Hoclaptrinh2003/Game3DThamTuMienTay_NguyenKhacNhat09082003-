@@ -3,17 +3,19 @@ using UnityEngine;
 
 public class ListGun : MonoBehaviour
 {
-    public List<GameObject> guns; // Danh sách các súng
-    private int currentGunIndex = 0; // Chỉ số loại súng hiện tại
-    private float scrollInput; // Nhập cuộn chuột
-    private float lastScrollTime = 0f; // Thời gian của lần cuộn chuột trước đó
-    public float scrollDelay = 0.2f; // Thời gian trì hoãn cuộn chuột
-    public PlayerShooter playerShooter; // Tham chiếu đến PlayerShooter
+    public List<GameObject> guns;
+    private int currentGunIndex = 0;
+    private float scrollInput;
+    private float lastScrollTime = 0f;
+    public float scrollDelay = 0.2f;
+    public PlayerShooter playerShooter;
+    public List<bulletCount> bulletCounts; 
 
     private void Start()
     {
         UpdateGunVisibility();
-        // Cập nhật tia lửa cho súng đầu tiên
+        UpdateBulletCountDisplay();
+
         if (playerShooter != null)
         {
             playerShooter.UpdateSparkEffect(currentGunIndex);
@@ -40,7 +42,8 @@ public class ListGun : MonoBehaviour
                 }
 
                 UpdateGunVisibility();
-                // Cập nhật tia lửa cho súng mới nhưng không hiển thị ngay
+                UpdateBulletCountDisplay();
+
                 if (playerShooter != null)
                 {
                     playerShooter.UpdateSparkEffect(currentGunIndex);
@@ -60,5 +63,27 @@ public class ListGun : MonoBehaviour
         {
             guns[currentGunIndex].SetActive(true);
         }
+    }
+
+    private void UpdateBulletCountDisplay()
+    {
+        for (int i = 0; i < bulletCounts.Count; i++)
+        {
+            if (i == currentGunIndex)
+            {
+                bulletCounts[i].gameObject.SetActive(true);
+                bulletCounts[i].quantityBullet = GetBulletCountForGun(i); 
+            }
+            else
+            {
+                bulletCounts[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private int GetBulletCountForGun(int gunIndex)
+    {
+       
+        return 0;
     }
 }

@@ -42,8 +42,9 @@ public class PlayerController : Singleton<PlayerController>
     {
         HandleMovement();
         HandleCameraRotation();
-      
+
     }
+
 
     private void HandleMovement()
     {

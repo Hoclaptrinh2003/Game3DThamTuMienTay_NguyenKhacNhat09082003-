@@ -1,37 +1,62 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 20f; // Tốc độ của viên đạn
-    private Vector3 direction; // Hướng di chuyển của viên đạn
-    private BulletPool bulletPool; // Reference đến BulletPool
+    public float speed = 800f; 
+    private Vector3 direction; 
+    private BulletPool bulletPool; 
+    private bool hasCollided = false; 
 
-    // Hàm khởi tạo hướng di chuyển của viên đạn
+
     public void Initialize(Vector3 bulletDirection, BulletPool pool)
     {
         direction = bulletDirection;
         bulletPool = pool;
-        // Reset viên đạn tại vị trí khởi tạo
+    
         gameObject.SetActive(true);
+        hasCollided = false;
+        StartCoroutine(ReturnToPoolAfterTime(4f)); 
     }
 
     void Update()
     {
-        MoveBullet();
+        if (!hasCollided)
+        {
+            MoveBullet();
+        }
     }
 
     private void MoveBullet()
     {
-        // Cập nhật vị trí của viên đạn theo hướng
+      
         transform.position += direction * speed * Time.deltaTime;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Xử lý va chạm tại đây và trả viên đạn về pool
-        if (bulletPool != null)
+        if (!hasCollided)
         {
-            bulletPool.ReturnBullet(gameObject);
+            hasCollided = true;
+            StopCoroutine(ReturnToPoolAfterTime(6f)); 
+         
+            if (bulletPool != null)
+            {
+                bulletPool.ReturnBullet(gameObject);
+            }
+        }
+    }
+
+    private IEnumerator ReturnToPoolAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (!hasCollided)
+        {
+            
+            if (bulletPool != null)
+            {
+                bulletPool.ReturnBullet(gameObject);
+            }
         }
     }
 }

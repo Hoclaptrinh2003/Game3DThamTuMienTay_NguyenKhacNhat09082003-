@@ -30,6 +30,7 @@ TagManager:
   - Door2
   - bullet
   - Bullet
+  - Audio
   layers:
   - Default
   - TransparentFX

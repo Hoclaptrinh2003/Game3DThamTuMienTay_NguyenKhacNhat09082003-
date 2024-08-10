@@ -30,7 +30,7 @@ public class Bomb : MonoBehaviour,Iobserver
     }
     public void KickBomb()
     {
-      
+        AudioManager.Instance.PlayBombSound();
        BombGame.SetActive(true);
     }
 }

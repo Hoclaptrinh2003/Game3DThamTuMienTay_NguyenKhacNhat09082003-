@@ -59,6 +59,7 @@ public class Door : MonoBehaviour
     public void OnOpenDoor()
     {
         SubJect.Notify("OnOpenDoor"+ID_Door);
+        AudioManager.Instance.OpenDoorSound();
         animationDoor.Play();
         hasOpened = true;
     }
