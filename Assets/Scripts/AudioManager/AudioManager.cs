@@ -1,19 +1,20 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class AudioManager : Singleton<AudioManager> 
+public class AudioManager : Singleton<AudioManager>
 {
-
     public AudioSource backgroundMusicSource;
     public AudioSource soundEffectSource;
 
     public AudioClip backgroundMusicClip;
-    public AudioClip[] soundEffectsClips;
-
-    
+    public List<AudioClip> soundEffectsClips;
 
     private void Start()
     {
         PlayBackgroundMusic();
+
+        
+        
     }
 
     public void PlayBackgroundMusic()
@@ -28,48 +29,21 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlaySoundEffect(int index)
     {
-        if (index >= 0 && index < soundEffectsClips.Length)
+        if (IsIndexValid(index, soundEffectsClips.Count))
         {
             soundEffectSource.PlayOneShot(soundEffectsClips[index]);
         }
     }
 
-    public void PlayFootstepSound()
-    {
-        int footstepIndex = 0; 
-        if (footstepIndex >= 0 && footstepIndex < soundEffectsClips.Length)
-        {
-            soundEffectSource.PlayOneShot(soundEffectsClips[footstepIndex]);
-        }
-    }
+    public void PlayFootstepSound() => PlaySoundEffect(0);
+    public void PlayBulletSound() => PlaySoundEffect(1);
+    public void PlayBombSound() => PlaySoundEffect(2);
+    public void OpenDoorSound() => PlaySoundEffect(3);
+    public void OpenDoorPhoneSound() => PlaySoundEffect(4);
 
-   
-    public void PlayBulletSound()
-    {
-        int BulletIndex = 1;
-        if (BulletIndex >= 1 && BulletIndex < soundEffectsClips.Length)
-        {
-            soundEffectSource.PlayOneShot(soundEffectsClips[BulletIndex]);
-        }
-    }
+    public void PhoneSound() => PlaySoundEffect(5);
 
-    public void PlayBombSound()
-    {
-        int bombIndex = 2;
-        if (bombIndex >= 2 && bombIndex < soundEffectsClips.Length)
-        {
-            soundEffectSource.PlayOneShot(soundEffectsClips[bombIndex]);
-        }
-    }
 
-    public void OpenDoorSound()
-    {
-        int Index = 3;
-        if (Index >= 3 && Index < soundEffectsClips.Length)
-        {
-            soundEffectSource.PlayOneShot(soundEffectsClips[Index]);
-        }
-    }
     public void AdjustBackgroundMusicVolume(float volume)
     {
         backgroundMusicSource.volume = volume;
@@ -78,5 +52,10 @@ public class AudioManager : Singleton<AudioManager>
     public void AdjustSoundEffectsVolume(float volume)
     {
         soundEffectSource.volume = volume;
+    }
+
+    private bool IsIndexValid(int index, int arrayLength)
+    {
+        return index >= 0 && index < arrayLength;
     }
 }

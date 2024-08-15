@@ -32,5 +32,10 @@ public class bulletCount : MonoBehaviour
             timeSinceLastShot = 0f;
         }
 
+        if(quantityBullet > 0 && Input.GetMouseButtonUp(0))
+        {
+            AudioManager.Instance.PlayBulletSound();
+
+        }
     }
 }

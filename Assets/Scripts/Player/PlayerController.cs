@@ -24,7 +24,7 @@ public class PlayerController : Singleton<PlayerController>
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 velocity = Vector3.zero;
 
-    private bool canMove = true;
+    public bool canMove = true;
 
     private CharacterController characterController;
 

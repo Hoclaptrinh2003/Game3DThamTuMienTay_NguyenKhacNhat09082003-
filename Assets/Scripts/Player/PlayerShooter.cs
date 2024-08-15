@@ -36,7 +36,7 @@ public class PlayerShooter : MonoBehaviour
             isFiring = false;
             StopCoroutine(FireBulletCoroutine());
             sparkCoroutine = StartCoroutine(DelayedSparkHide());
-            AudioManager.Instance.PlayBulletSound();
+            
         }
     }
 

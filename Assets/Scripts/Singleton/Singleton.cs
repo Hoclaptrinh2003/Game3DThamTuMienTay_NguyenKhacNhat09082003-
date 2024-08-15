@@ -33,7 +33,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         if(_instance==null) 
         {
             _instance = this as T;
-            if (_dontDestroyOnLoad)
+            if (_dontDestroyOnLoad==true)
             {
                 var root = transform.root;
 
@@ -53,4 +53,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    
 }

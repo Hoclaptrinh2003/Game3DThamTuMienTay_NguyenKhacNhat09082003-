@@ -31,6 +31,8 @@ TagManager:
   - bullet
   - Bullet
   - Audio
+  - Door100
+  - Door80
   layers:
   - Default
   - TransparentFX
